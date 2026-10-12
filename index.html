@@ -1,82 +1,98 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="日々の仕事に必要な社内サービスを、ひとつのワークスペースに。検索やお気に入りからすばやくアクセス。">
+  <meta name="color-scheme" content="dark light">
   <title>WORKSPACE | 社内システムポータル</title>
-  <!-- Webブラウザ用のファビコンを設定 -->
-  
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  
-  <style>:root{color-scheme:dark;--bg:#080f1e;--line:#283953;--muted:#a7b7cf}*{box-sizing:border-box}body{margin:0;min-height:100vh;padding:72px 24px;background:radial-gradient(ellipse at 75% 0%,#203965 0%,transparent 52%),#080f1e;color:#f6f9ff;font-family:"Noto Sans JP",sans-serif}.container{width:min(100%,1040px);margin:auto}h1{font-size:clamp(32px,5vw,58px);letter-spacing:-.05em;margin:0 0 40px;font-weight:700}h1:before{content:"WORKSPACE / INTERNAL PORTAL";display:block;color:#8ddfe5;font-size:11px;letter-spacing:.23em;margin-bottom:16px}h1 i{color:#8abaff;margin-right:12px}.button-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.link-card{display:flex;align-items:center;justify-content:space-between;min-height:132px;padding:28px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(140deg,#1b2a43,#111c2e);color:#f6f9ff;text-decoration:none;transition:.25s;box-shadow:0 6px 24px #0002}.link-card:hover{border-color:#82b7ff;transform:translateY(-5px);box-shadow:0 16px 35px #0006}.link-content{display:flex;align-items:center;min-width:0;gap:18px}.link-icon{display:grid;place-items:center;flex:none;width:54px;height:54px;border-radius:15px;background:#263d5e;color:#9fd9ff;font-size:20px}.link-text{font-size:17px;font-weight:700}.arrow-icon{color:#7898bd;font-size:13px;transition:.2s}.link-card:hover .arrow-icon{color:white;transform:translateX(3px)}.badge{background:#dc4777;color:white;border-radius:7px;padding:4px 8px;font-size:11px;margin-left:8px}@media(max-width:650px){body{padding:38px 17px}h1{margin-bottom:26px}.button-list{grid-template-columns:1fr;gap:12px}.link-card{min-height:105px;padding:19px}.link-icon{width:46px;height:46px}.link-text{font-size:14px}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}</style>
+  <style>
+    :root{color-scheme:dark;--bg:#101414;--panel:#191e1d;--hover:#232b28;--text:#edf2ec;--muted:#a3ada5;--line:#303832;--accent:#d5f78c;--accent-text:#263213;--input:#141918;--shadow:#0003}
+    [data-theme="light"]{color-scheme:light;--bg:#f4f5ef;--panel:#fff;--hover:#edf1e7;--text:#202921;--muted:#59665b;--line:#d9dfd2;--accent:#d5edab;--accent-text:#263213;--input:#fff;--shadow:#20302008}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,"Noto Sans JP",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:14px;line-height:1.6}button,input,a{-webkit-tap-highlight-color:transparent}button,input{font:inherit}button,a{touch-action:manipulation}button{cursor:pointer}a{color:inherit;text-decoration:none}button{color:inherit}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:4px}svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}.shell{max-width:1440px;margin:auto;display:grid;grid-template-columns:228px 1fr;min-height:100vh}.sidebar{padding:36px 22px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:44px}.brand{display:flex;align-items:center;gap:11px;font-size:15px;letter-spacing:.08em;font-weight:800}.brand-mark{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:var(--accent);color:var(--accent-text)}.brand-mark svg{width:21px}.nav-label,.eyebrow{font-size:10px;letter-spacing:.18em;font-weight:700;color:var(--muted)}.nav-label{margin:0 12px 14px}.nav{display:grid;gap:8px}.nav button{display:flex;align-items:center;gap:12px;border:0;border-radius:10px;padding:12px;background:transparent;color:var(--muted);text-align:left;font-size:13px}.nav button[aria-pressed="true"]{background:var(--accent);color:var(--accent-text);font-weight:700}.nav button:hover{background:var(--hover);color:var(--text)}.nav button[aria-pressed="true"]:hover{background:var(--accent);color:var(--accent-text)}.nav svg{width:18px;height:18px}.side-note{margin-top:auto;padding:18px 14px;border:1px solid var(--line);border-radius:12px;font-size:11px;color:var(--muted)}.side-note strong{display:block;color:var(--text);margin-bottom:7px;font-size:12px}.side-note svg{width:18px;margin-bottom:9px}.main{padding:29px 46px 24px;min-width:0}.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:29px;border-bottom:1px solid var(--line)}.breadcrumb{color:var(--muted);font-size:12px}.breadcrumb span{color:var(--text);margin-left:10px}.top-actions{display:flex;align-items:center;gap:15px}.date{font-size:12px;color:var(--muted)}.icon-button{border:1px solid var(--line);background:var(--panel);width:38px;height:38px;border-radius:50%;display:grid;place-items:center}.icon-button:hover{background:var(--hover)}.icon-button svg{width:17px;height:17px}.hero{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:20px;padding:35px 34px;margin:31px 0 28px;background:var(--panel);min-height:220px}.hero-content{position:relative;z-index:1;max-width:75%}.hero .eyebrow{color:var(--accent);display:flex;align-items:center;gap:8px}.eyebrow::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor}h1{font-size:clamp(26px,3.1vw,39px);font-weight:600;letter-spacing:-.04em;line-height:1.4;margin:13px 0 12px}.hero p{color:var(--muted);font-size:12px;margin:0}.hero-bottom{display:flex;gap:15px;align-items:center;margin-top:23px;color:var(--muted);font-size:11px}.hero-bottom b{color:var(--text);font-weight:600}.hero-art{position:absolute;right:25px;top:22px;width:195px;height:195px;transform:rotate(-16deg);opacity:.65;pointer-events:none}.orbit{position:absolute;inset:10px;border:1px solid var(--line);border-radius:50%}.orbit:nth-child(2){inset:33px}.orbit:nth-child(3){inset:56px}.orbit:nth-child(4){inset:79px;background:var(--accent);border:0;box-shadow:0 0 55px #b5da6833}.orbit:first-child::after{content:"";position:absolute;top:14px;left:25px;width:12px;height:12px;border-radius:50%;background:var(--accent)}.orbit:nth-child(2)::after{content:"";position:absolute;bottom:8px;right:14px;width:7px;height:7px;background:var(--muted);border-radius:50%}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:23px}.search{display:flex;align-items:center;gap:10px;background:var(--input);border:1px solid var(--line);border-radius:10px;padding:11px 13px;width:300px;max-width:100%}.search svg{width:17px;height:17px;color:var(--muted)}.search input{min-width:0;width:100%;border:0;outline:none;background:transparent;color:var(--text);font-size:12px}.search:focus-within{border-color:var(--accent)}.search input::placeholder{color:var(--muted)}kbd{color:var(--muted);border:1px solid var(--line);padding:0 5px;border-radius:4px;font-size:11px}.filters{display:flex;gap:5px;flex-wrap:wrap}.filter{border:0;background:transparent;color:var(--muted);font-size:11px;padding:8px 12px;border-radius:7px;white-space:nowrap}.filter[aria-pressed="true"]{background:var(--hover);color:var(--text);font-weight:700}.filter:hover{background:var(--hover);color:var(--text)}.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}h2{font-size:16px;font-weight:600;margin:0;letter-spacing:-.02em}.count{font-size:11px;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.card{position:relative;border:1px solid var(--line);border-radius:14px;background:var(--panel);transition:transform .18s,border-color .18s,background .18s;min-width:0}.card:hover{transform:translateY(-3px);border-color:var(--muted);background:var(--hover)}.card-link{display:block;padding:22px 20px 17px;height:100%}.card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:23px}.service-icon{display:grid;place-items:center;width:43px;height:43px;border-radius:12px;color:var(--tone);background:var(--tone-bg)}.card h3{font-size:15px;font-weight:600;line-height:1.5;margin:0 0 7px;padding-right:6px;overflow-wrap:anywhere}.card p{margin:0;color:var(--muted);font-size:11px;min-height:36px}.card-footer{display:flex;justify-content:space-between;align-items:center;margin-top:22px;color:var(--muted);font-size:10px}.tag{border:1px solid var(--line);padding:3px 7px;border-radius:5px}.card-footer svg{width:14px;height:14px}.favorite{position:absolute;right:12px;top:15px;border:0;background:transparent;width:38px;height:38px;border-radius:8px;display:grid;place-items:center;color:var(--muted)}.favorite:hover{background:var(--bg);color:var(--text)}.favorite svg{width:18px;height:18px}.favorite[aria-pressed="true"]{color:var(--accent)}.favorite[aria-pressed="true"] svg{fill:currentColor}.recent-section{margin-top:32px}.recent-list{display:flex;gap:10px;flex-wrap:wrap}.recent-link{display:flex;align-items:center;gap:9px;padding:10px 13px;background:var(--panel);border:1px solid var(--line);border-radius:9px;font-size:11px}.recent-link:hover{border-color:var(--muted)}.recent-link svg{width:15px;height:15px;color:var(--muted)}.recent-empty{font-size:12px;color:var(--muted);margin:0}.empty{border:1px dashed var(--line);border-radius:14px;padding:44px 20px;text-align:center;color:var(--muted);grid-column:1/-1}.empty strong{display:block;color:var(--text);margin-bottom:8px}.empty p{font-size:12px;margin:0 0 15px}.reset{border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:8px 14px;font-size:12px}.footer{border-top:1px solid var(--line);margin-top:34px;padding-top:18px;display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-size:10px}.notice{margin:12px 0 0;color:var(--muted);font-size:11px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}[hidden]{display:none!important}.skip{position:absolute;left:12px;top:-80px;z-index:10;background:var(--accent);color:var(--accent-text);padding:10px 15px;border-radius:8px}.skip:focus{top:12px}
+    [data-theme="light"] .hero .eyebrow,[data-theme="light"] .favorite[aria-pressed="true"]{color:#47651e}
+    @media(min-width:1440px){.shell{border-left:1px solid var(--line);border-right:1px solid var(--line)}}
+    @media(max-width:1150px){.main{padding:25px 28px}.toolbar{align-items:flex-start;flex-direction:column}.search{width:100%}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-art{right:0;opacity:.4}}
+    @media(max-width:760px){.shell{display:block}.sidebar{padding:20px;border-right:0;border-bottom:1px solid var(--line);gap:19px}.brand{font-size:13px}.nav{display:flex;gap:6px;flex-wrap:wrap}.nav button{padding:9px 12px;font-size:12px}.nav-label,.side-note{display:none}.main{padding:20px}.topbar{padding-bottom:18px}.breadcrumb{font-size:11px}.date{font-size:10px}.hero{padding:27px 23px;margin-top:22px;min-height:210px}.hero-content{max-width:100%}.hero-art{right:-90px;top:45px;opacity:.25}.hero p{max-width:240px}.toolbar{gap:12px}.filters{gap:0}.filter{padding:8px 10px}.footer{flex-direction:column}}
+    @media(max-width:420px){.grid{grid-template-columns:1fr}.card-link{padding:20px}.card-top{margin-bottom:16px}.card p{min-height:0}.card-footer{margin-top:17px}.hero-bottom{gap:10px}.date{display:none}}
+    @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+  </style>
 </head>
 <body>
-
-  <div class="container">
-    <h1><i class="fa-solid fa-network-wired"></i>社内システム</h1>
-    
-    <div class="button-list">
-      
-      <a href="https://portal.brexa-tech.jp/" class="link-card" target="_blank" rel="noopener noreferrer">
-        <div class="link-content">
-          <i class="fa-solid fa-clipboard-list link-icon"></i>
-          <span class="link-text">掲示板</span>
-        </div>
-        <i class="fa-solid fa-chevron-right arrow-icon"></i>
-      </a>
-
-      <a href="https://osg03-cws.company.works-hi.com/self-workflow/cws/cws" class="link-card" target="_blank" rel="noopener noreferrer">
-        <div class="link-content">
-          <i class="fa-solid fa-clock link-icon"></i>
-          <span class="link-text">勤怠管理</span>
-        </div>
-        <i class="fa-solid fa-chevron-right arrow-icon"></i>
-      </a>
-
-      <a href="https://btec.secure.keihi.com/subdomains/sign_in" class="link-card" target="_blank" rel="noopener noreferrer">
-        <div class="link-content">
-          <i class="fa-solid fa-file-invoice-dollar link-icon"></i>
-          <span class="link-text">TOKIUM (経費)</span>
-        </div>
-        <i class="fa-solid fa-chevron-right arrow-icon"></i>
-      </a>
-
-      <a href="https://www2.e-kakushin.com/emember/servicetop.do?p=init" class="link-card" target="_blank" rel="noopener noreferrer">
-        <div class="link-content">
-          <i class="fa-solid fa-receipt link-icon"></i>
-          <span class="link-text">e革新 (給与明細)</span>
-        </div>
-        <i class="fa-solid fa-chevron-right arrow-icon"></i>
-      </a>
-
-      <a href="https://www25.learningpark.jp/BREXA-education" class="link-card" target="_blank" rel="noopener noreferrer">
-        <div class="link-content">
-          <i class="fa-solid fa-graduation-cap link-icon"></i>
-          <span class="link-text">CAREESHIP</span>
-        </div>
-        <i class="fa-solid fa-chevron-right arrow-icon"></i>
-      </a>
-
-      <a href="https://tiuy3435.talent-p.net/saml/sso" class="link-card" target="_blank" rel="noopener noreferrer">
-        <div class="link-content">
-          <i class="fa-solid fa-users-viewfinder link-icon"></i>
-          <span class="link-text">Talent Palette</span>
-        </div>
-        <i class="fa-solid fa-chevron-right arrow-icon"></i>
-      </a>
-
-      <a href="https://www.union.ostechnology.jp/user/login?destination=/" class="link-card" target="_blank" rel="noopener noreferrer">
-        <div class="link-content">
-          <i class="fa-solid fa-people-group link-icon"></i>
-          <span class="link-text">BREXA Technology労働組合</span>
-        </div>
-        <i class="fa-solid fa-chevron-right arrow-icon"></i>
-      </a>
-
-
-    </div>
+  <a class="skip" href="#main">メインコンテンツへ移動</a>
+  <div class="shell">
+    <aside class="sidebar" aria-label="メインナビゲーション">
+      <a class="brand" href="./index.html"><span class="brand-mark" data-icon="layers"></span>WORKSPACE</a>
+      <div><p class="nav-label">YOUR WORKSPACE</p><nav class="nav" aria-label="サービス表示">
+        <button type="button" data-view="all" aria-pressed="true"><span data-icon="grid"></span>すべてのサービス</button>
+        <button type="button" data-view="favorites" aria-pressed="false"><span data-icon="star"></span>お気に入り</button>
+      </nav></div>
+      <div class="side-note"><span data-icon="spark"></span><strong>毎日の仕事を、軽やかに。</strong>よく使うサービスは星を押して、お気に入りにまとめましょう。</div>
+    </aside>
+    <main class="main" id="main" tabindex="-1">
+      <header class="topbar"><div class="breadcrumb">ホーム <span>/ 社内システム</span></div><div class="top-actions"><time id="date" class="date"></time><button type="button" id="theme-toggle" class="icon-button" aria-label="ライトテーマに切り替える"><span data-icon="sun"></span></button></div></header>
+      <section class="hero" aria-labelledby="welcome"><div class="hero-content"><div class="eyebrow">MAKE WORK FLOW</div><h1 id="welcome">仕事の入り口を、ひとつに。</h1><p>いつものサービスへ、迷わずアクセス。<br>あなたの毎日をつなぐワークスペース。</p><div class="hero-bottom"><span><b>07</b> SERVICES</span><span>／</span><span>すべてのリンクが新しいタブで開きます</span></div></div><div class="hero-art" aria-hidden="true"><i class="orbit"></i><i class="orbit"></i><i class="orbit"></i><i class="orbit"></i></div></section>
+      <div class="toolbar"><label class="search"><span data-icon="search"></span><span class="sr-only">サービスを検索</span><input id="search" type="search" placeholder="サービス名・キーワードで検索" autocomplete="off" aria-keyshortcuts="/"><kbd aria-hidden="true">/</kbd></label><div class="filters" aria-label="カテゴリで絞り込み">
+        <button class="filter" type="button" data-category="all" aria-pressed="true">すべて</button><button class="filter" type="button" data-category="daily" aria-pressed="false">日々の業務</button><button class="filter" type="button" data-category="money" aria-pressed="false">経費・給与</button><button class="filter" type="button" data-category="career" aria-pressed="false">学習・キャリア</button><button class="filter" type="button" data-category="support" aria-pressed="false">サポート</button>
+      </div></div>
+      <section aria-labelledby="services-heading"><div class="section-head"><h2 id="services-heading">すべてのサービス</h2><span id="count" class="count" role="status" aria-live="polite"></span></div><div id="services" class="grid"></div></section>
+      <section class="recent-section" aria-labelledby="recent-heading"><div class="section-head"><h2 id="recent-heading">最近使ったサービス</h2></div><div id="recent" class="recent-list"></div></section>
+      <p id="storage-notice" class="notice" role="status" hidden>このブラウザでは設定を保存できないため、今回の表示中のみ有効になります。</p>
+      <noscript><p class="notice">検索やお気に入りにはJavaScriptが必要です。サービスには以下からアクセスできます。</p><ul>
+        <li><a href="https://portal.brexa-tech.jp/" target="_blank" rel="noopener noreferrer">掲示板</a></li><li><a href="https://osg03-cws.company.works-hi.com/self-workflow/cws/cws" target="_blank" rel="noopener noreferrer">勤怠管理</a></li><li><a href="https://btec.secure.keihi.com/subdomains/sign_in" target="_blank" rel="noopener noreferrer">TOKIUM（経費）</a></li><li><a href="https://www2.e-kakushin.com/emember/servicetop.do?p=init" target="_blank" rel="noopener noreferrer">e革新（給与明細）</a></li><li><a href="https://www25.learningpark.jp/BREXA-education" target="_blank" rel="noopener noreferrer">CAREESHIP</a></li><li><a href="https://tiuy3435.talent-p.net/saml/sso" target="_blank" rel="noopener noreferrer">Talent Palette</a></li><li><a href="https://www.union.ostechnology.jp/user/login?destination=/" target="_blank" rel="noopener noreferrer">BREXA Technology労働組合</a></li>
+      </ul></noscript>
+      <footer class="footer"><span>WORKSPACE <span aria-hidden="true">·</span> INTERNAL SYSTEM PORTAL</span><span>お気に入り・履歴・テーマはこのブラウザに保存されます</span></footer>
+    </main>
   </div>
-
+  <script>
+    'use strict';
+    const paths={layers:'<path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/>',grid:'<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',star:'<path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3Z"/>',spark:'<path d="m12 3 2.4 6.6L21 12l-6.6 2.4L12 21l-2.4-6.6L3 12l6.6-2.4L12 3Z"/>',search:'<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/>',sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/>',moon:'<path d="M20.5 14A9 9 0 0 1 10 3.5 9 9 0 1 0 20.5 14Z"/>',board:'<rect x="4" y="5" width="16" height="16" rx="2"/><path d="M9 3h6v4H9zM8 12h8M8 16h5"/>',clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',wallet:'<path d="M20 8H5a2 2 0 0 1 0-4h13v4M4 7v12a1 1 0 0 0 1 1h15V8"/><path d="M20 12h-6v4h6M16 14h.01"/>',receipt:'<path d="M6 3h12v18l-3-2-3 2-3-2-3 2V3ZM9 7h6M9 11h6M9 15h3"/>',book:'<path d="M12 6C9 3 5 3 2 4v15c3-1 7-1 10 2 3-3 7-3 10-2V4c-3-1-7-1-10 2ZM12 6v15"/>',users:'<circle cx="9" cy="7" r="3"/><path d="M3 20v-3a6 6 0 0 1 12 0v3M16 4a3 3 0 0 1 0 6M21 20v-3a6 6 0 0 0-3-5"/>',heart:'<path d="M20 5a5 5 0 0 0-8 1 5 5 0 0 0-8-1c-5 5 3 11 8 15 5-4 13-10 8-15Z"/>',arrow:'<path d="M5 19 19 5M5 5h14v14"/>'};
+    const icon=name=>`<svg viewBox="0 0 24 24" aria-hidden="true">${paths[name]||paths.grid}</svg>`;
+    document.querySelectorAll('[data-icon]').forEach(el=>el.innerHTML=icon(el.dataset.icon));
+    const services=[
+      {id:'board',name:'掲示板',description:'社内のお知らせ・情報を確認',category:'daily',label:'日々の業務',icon:'board',tone:'#c6dfab',bg:'#9ac86a18',keywords:'portal ポータル お知らせ brexa',url:'https://portal.brexa-tech.jp/'},
+      {id:'attendance',name:'勤怠管理',description:'勤務時間の記録・勤怠の申請',category:'daily',label:'日々の業務',icon:'clock',tone:'#a8c8f0',bg:'#78aaf018',keywords:'勤務 出勤 退勤 休暇 attendance cws',url:'https://osg03-cws.company.works-hi.com/self-workflow/cws/cws'},
+      {id:'expense',name:'TOKIUM',description:'経費の申請・精算はこちら',category:'money',label:'経費・給与',icon:'wallet',tone:'#e5c494',bg:'#e5bd7818',keywords:'経費 精算 領収書 トキウム',url:'https://btec.secure.keihi.com/subdomains/sign_in'},
+      {id:'salary',name:'e革新',description:'給与明細・給与情報を確認',category:'money',label:'経費・給与',icon:'receipt',tone:'#9bd4c3',bg:'#69c8ab18',keywords:'給与 明細 給料 イーカクシン',url:'https://www2.e-kakushin.com/emember/servicetop.do?p=init'},
+      {id:'learning',name:'CAREESHIP',description:'研修・eラーニングでスキルアップ',category:'career',label:'学習・キャリア',icon:'book',tone:'#c4b4e6',bg:'#ab8cda18',keywords:'学習 研修 教育 キャリアシップ learning',url:'https://www25.learningpark.jp/BREXA-education'},
+      {id:'talent',name:'Talent Palette',description:'人材情報・キャリアを確認',category:'career',label:'学習・キャリア',icon:'users',tone:'#dca8bc',bg:'#d48aa718',keywords:'人材 タレントパレット 評価',url:'https://tiuy3435.talent-p.net/saml/sso'},
+      {id:'union',name:'BREXA Technology労働組合',description:'組合のお知らせ・サポート情報',category:'support',label:'サポート',icon:'heart',tone:'#bac5cd',bg:'#94adbf18',keywords:'労働 組合 ブレクサ union',url:'https://www.union.ostechnology.jp/user/login?destination=/'}
+    ];
+    const storageKey='workspace-portal-v1';
+    let saved={};let storageAvailable=true;
+    try{saved=JSON.parse(localStorage.getItem(storageKey)||'{}')||{};}catch{storageAvailable=false;}
+    const validIds=new Set(services.map(s=>s.id));
+    const cleanIds=value=>Array.isArray(value)?[...new Set(value.filter(id=>validIds.has(id)))]:[];
+    const state={favorites:cleanIds(saved.favorites),recent:cleanIds(saved.recent).slice(0,4),theme:saved.theme==='light'?'light':'dark',view:'all',category:'all',query:''};
+    const search=document.getElementById('search');
+    function persist(){try{localStorage.setItem(storageKey,JSON.stringify({favorites:state.favorites,recent:state.recent,theme:state.theme}));}catch{storageAvailable=false;}document.getElementById('storage-notice').hidden=storageAvailable;}
+    function applyTheme(){document.documentElement.dataset.theme=state.theme;const toggle=document.getElementById('theme-toggle');toggle.innerHTML=icon(state.theme==='dark'?'sun':'moon');toggle.setAttribute('aria-label',state.theme==='dark'?'ライトテーマに切り替える':'ダークテーマに切り替える');}
+    const normalize=value=>value.normalize('NFKC').toLocaleLowerCase('ja').trim();
+    function render(){
+      const terms=normalize(state.query).split(/\s+/).filter(Boolean);
+      const visible=services.filter(s=>(state.view!=='favorites'||state.favorites.includes(s.id))&&(state.category==='all'||s.category===state.category)&&terms.every(t=>normalize([s.name,s.description,s.label,s.keywords].join(' ')).includes(t)));
+      document.getElementById('services-heading').textContent=state.view==='favorites'?'お気に入り':'すべてのサービス';
+      document.getElementById('count').textContent=`${visible.length} / ${state.view==='favorites'?state.favorites.length:services.length} サービス`;
+      document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===state.view)));
+      document.querySelectorAll('[data-category]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.category===state.category)));
+      document.getElementById('services').innerHTML=visible.length?visible.map(s=>`<article class="card"><a class="card-link" href="${s.url}" target="_blank" rel="noopener noreferrer" data-service="${s.id}"><div class="card-top"><span class="service-icon" style="--tone:${state.theme==='light'?'#40513f':s.tone};--tone-bg:${s.bg}">${icon(s.icon)}</span></div><h3>${s.name}</h3><p>${s.description}</p><div class="card-footer"><span class="tag">${s.label}</span>${icon('arrow')}</div><span class="sr-only">（新しいタブで開きます）</span></a><button class="favorite" type="button" data-favorite="${s.id}" aria-label="${s.name}のお気に入り" aria-pressed="${state.favorites.includes(s.id)}">${icon('star')}</button></article>`).join(''):`<div class="empty"><strong>${state.view==='favorites'&&!state.favorites.length?'お気に入りを作りましょう':'該当するサービスがありません'}</strong><p>${state.view==='favorites'&&!state.favorites.length?'カードの星を押すと、ここに表示されます。':'検索キーワードやカテゴリを変えてみてください。'}</p><button class="reset" type="button" id="reset">すべてのサービスを表示</button></div>`;
+    }
+    function renderRecent(){document.getElementById('recent').innerHTML=state.recent.length?state.recent.map(id=>{const s=services.find(s=>s.id===id);return `<a class="recent-link" href="${s.url}" target="_blank" rel="noopener noreferrer" data-service="${s.id}">${icon(s.icon)}${s.name}${icon('arrow')}<span class="sr-only">（新しいタブで開きます）</span></a>`;}).join(''):'<p class="recent-empty">サービスを開くと、ここに最大4件表示されます。</p>';}
+    document.addEventListener('click',event=>{
+      const favorite=event.target.closest('[data-favorite]');
+      if(favorite){const id=favorite.dataset.favorite;state.favorites=state.favorites.includes(id)?state.favorites.filter(v=>v!==id):[...state.favorites,id];persist();render();const next=document.querySelector(`[data-favorite="${id}"]`)||document.querySelector('.favorite')||document.getElementById('reset');next?.focus();return;}
+      const view=event.target.closest('[data-view]');if(view){state.view=view.dataset.view;render();return;}
+      const category=event.target.closest('[data-category]');if(category){state.category=category.dataset.category;render();return;}
+      const service=event.target.closest('[data-service]');if(service){state.recent=[service.dataset.service,...state.recent.filter(id=>id!==service.dataset.service)].slice(0,4);persist();renderRecent();}
+      if(event.target.closest('#reset')){state.view='all';state.category='all';state.query='';search.value='';render();search.focus();}
+    });
+    // Middle-click also records use, while preserving native link behavior.
+    document.addEventListener('auxclick',event=>{const link=event.target.closest('[data-service]');if(event.button===1&&link){state.recent=[link.dataset.service,...state.recent.filter(id=>id!==link.dataset.service)].slice(0,4);persist();renderRecent();}});
+    search.addEventListener('input',()=>{state.query=search.value;render();});
+    document.getElementById('theme-toggle').addEventListener('click',()=>{state.theme=state.theme==='dark'?'light':'dark';applyTheme();persist();render();});
+    document.addEventListener('keydown',event=>{if(event.defaultPrevented||event.ctrlKey||event.metaKey||event.altKey||event.isComposing)return;const editing=event.target.closest('input,textarea,select,[contenteditable]');if(event.key==='/'&&!editing){event.preventDefault();search.focus();}if(event.key==='Escape'&&document.activeElement===search){search.value='';state.query='';render();}});
+    function updateDate(){const now=new Date();const date=document.getElementById('date');date.dateTime=[now.getFullYear(),String(now.getMonth()+1).padStart(2,'0'),String(now.getDate()).padStart(2,'0')].join('-');date.textContent=new Intl.DateTimeFormat('ja-JP',{year:'numeric',month:'long',day:'numeric',weekday:'short'}).format(now);}
+    applyTheme();render();renderRecent();updateDate();setInterval(updateDate,60000);document.getElementById('storage-notice').hidden=storageAvailable;
+  </script>
 </body>
 </html>
