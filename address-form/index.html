@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>お客様情報入力フォーム</title>
+  <style>
+    :root { color-scheme: light; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: #f3f6fb; color: #1b2a41; padding: 44px 16px; }
+    main { max-width: 600px; margin: auto; padding: 36px; background: white; border: 1px solid #e4eaf2; border-radius: 18px; box-shadow: 0 12px 34px rgba(20,48,88,.06); }
+    h1 { font-size: 25px; margin: 0 0 8px; }
+    .lead { color: #64748b; font-size: 14px; margin: 0 0 30px; line-height: 1.7; }
+    .field { margin-bottom: 19px; }
+    label { display: block; font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+    input, textarea { display: block; width: 100%; padding: 13px 14px; border: 1px solid #cbd5e1; border-radius: 9px; background: #fff; font: inherit; font-size: 15px; color: inherit; outline: none; transition: border-color .15s, box-shadow .15s; }
+    input:focus, textarea:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,.12); }
+    input::placeholder, textarea::placeholder { color: #94a3b8; }
+    textarea { resize: vertical; min-height: 100px; }
+    .actions { display: flex; gap: 12px; margin-top: 28px; }
+    button { border: 0; border-radius: 10px; padding: 13px 20px; font: inherit; font-weight: 700; cursor: pointer; }
+    .clear { background: #e9eef5; color: #334155; }
+    .clear:hover { background: #dce5ef; }
+    .note { font-size: 13px; line-height: 1.7; color: #64748b; margin-top: 20px; }
+    @media (max-width: 480px) { body { padding: 16px 12px; } main { padding: 25px 20px; } h1 { font-size: 22px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>お客様情報入力フォーム</h1>
+    <p class="lead">以下の項目に情報を入力してください。</p>
+    <form id="customer-form" autocomplete="off">
+      <div class="field"><label for="name">お名前</label><input id="name" name="name" type="text" placeholder="例：山田 太郎"></div>
+      <div class="field"><label for="postal">郵便番号</label><input id="postal" name="postal" type="text" inputmode="numeric" placeholder="例：123-4567"></div>
+      <div class="field"><label for="address">住所</label><input id="address" name="address" type="text" placeholder="例：東京都○○区○○ 1-2-3"></div>
+      <div class="field"><label for="phone">電話番号</label><input id="phone" name="phone" type="tel" placeholder="例：090-1234-5678"></div>
+      <div class="field"><label for="email">メールアドレス</label><input id="email" name="email" type="email" placeholder="例：sample@example.com"></div>
+      <div class="field"><label for="remarks">備考</label><textarea id="remarks" name="remarks" placeholder="ご自由にご入力ください"></textarea></div>
+      <div class="actions"><button class="clear" type="reset">入力をクリア</button></div>
+    </form>
+    <p class="note">※ 入力内容は保存・送信されません。ページを閉じると入力内容は失われます。</p>
+  </main>
+</body>
+</html>
