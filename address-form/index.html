@@ -56,7 +56,7 @@
         ['メールアドレス', 'email'],
         ['備考', 'remarks']
       ];
-      const text = fields.map(([label, id]) => label + '：' + document.getElementById(id).value.trim()).join('\\n');
+      const text = fields.map(([label, id]) => label + '：' + document.getElementById(id).value.trim()).join('\n');
       if (!fields.some(([, id]) => document.getElementById(id).value.trim())) {
         status.textContent = 'コピーする内容を入力してください。';
         return;
