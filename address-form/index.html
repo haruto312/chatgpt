@@ -19,6 +19,9 @@
     textarea { resize: vertical; min-height: 100px; }
     .actions { display: flex; gap: 12px; margin-top: 28px; }
     button { border: 0; border-radius: 10px; padding: 13px 20px; font: inherit; font-weight: 700; cursor: pointer; }
+    .copy { background: #2563eb; color: white; }
+    .copy:hover { background: #1d4ed8; }
+    .status { margin-top: 12px; color: #166534; font-size: 14px; min-height: 1.5em; }
     .clear { background: #e9eef5; color: #334155; }
     .clear:hover { background: #dce5ef; }
     .note { font-size: 13px; line-height: 1.7; color: #64748b; margin-top: 20px; }
@@ -36,9 +39,48 @@
       <div class="field"><label for="phone">電話番号</label><input id="phone" name="phone" type="tel" placeholder="例：090-1234-5678"></div>
       <div class="field"><label for="email">メールアドレス</label><input id="email" name="email" type="email" placeholder="例：sample@example.com"></div>
       <div class="field"><label for="remarks">備考</label><textarea id="remarks" name="remarks" placeholder="ご自由にご入力ください"></textarea></div>
-      <div class="actions"><button class="clear" type="reset">入力をクリア</button></div>
+      <div class="actions"><button class="copy" type="button" id="copy-button">入力内容をコピー</button><button class="clear" type="reset">入力をクリア</button></div>
+      <p class="status" id="copy-status" role="status" aria-live="polite"></p>
     </form>
     <p class="note">※ 入力内容は保存・送信されません。ページを閉じると入力内容は失われます。</p>
   </main>
+  <script>
+    const form = document.getElementById('customer-form');
+    const status = document.getElementById('copy-status');
+    document.getElementById('copy-button').addEventListener('click', async () => {
+      const fields = [
+        ['お名前', 'name'],
+        ['郵便番号', 'postal'],
+        ['住所', 'address'],
+        ['電話番号', 'phone'],
+        ['メールアドレス', 'email'],
+        ['備考', 'remarks']
+      ];
+      const text = fields.map(([label, id]) => label + '：' + document.getElementById(id).value.trim()).join('\\n');
+      if (!fields.some(([, id]) => document.getElementById(id).value.trim())) {
+        status.textContent = 'コピーする内容を入力してください。';
+        return;
+      }
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          const temp = document.createElement('textarea');
+          temp.value = text;
+          temp.style.position = 'fixed';
+          temp.style.opacity = '0';
+          document.body.appendChild(temp);
+          temp.select();
+          const succeeded = document.execCommand('copy');
+          temp.remove();
+          if (!succeeded) throw new Error('copy failed');
+        }
+        status.textContent = '入力内容をコピーしました！';
+      } catch (error) {
+        status.textContent = 'コピーできませんでした。ブラウザの設定をご確認ください。';
+      }
+    });
+    form.addEventListener('reset', () => { status.textContent = ''; });
+  </script>
 </body>
 </html>
