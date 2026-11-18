@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>社内システムポータル</title>
+  <link rel="icon" type="image/jpeg" href="https://haruto312.github.io/BREXAロゴ（オレンジ）.jpg">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --page: #edf0ef;
+      --paper: #fffefb;
+      --ink: #202d30;
+      --muted: #526167;
+      --rule: #cbd3d1;
+      --row: #f4f6f4;
+      --hover: #e9efeb;
+      --brand: #aa410d;
+      --tint: #fce5d4;
+      --focus: #086a98;
+      --shadow: 0 18px 60px rgb(29 48 41 / 11%);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --page: #172124; --paper: #202c30; --ink: #f1f4ef; --muted: #b8c8c8;
+        --rule: #48595b; --row: #2b393d; --hover: #36474a; --brand: #ffab78;
+        --tint: #49362d; --focus: #8edaff; --shadow: 0 18px 60px rgb(0 0 0 / 20%);
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--page);
+      background-image: radial-gradient(color-mix(in srgb, var(--muted) 14%, transparent) .8px, transparent .8px);
+      background-size: 14px 14px;
+      color: var(--ink);
+      font-family: "Noto Sans JP", "Helvetica Neue", sans-serif;
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center; padding: 20px;
+    }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+    .container {
+      width: 100%; max-width: 480px; padding: 40px;
+      background: var(--paper); border: 1px solid var(--rule); border-radius: 20px;
+      box-shadow: inset 0 4px var(--brand), var(--shadow);
+    }
+    header { position: relative; }
+    h1 {
+      font-size: 28px; font-weight: 700; letter-spacing: 0.05em;
+      margin-bottom: 30px; padding-bottom: 15px; border-bottom: 2px solid var(--rule);
+    }
+    .search-toggle {
+      position: absolute; top: 0; right: 0; min-width: 44px; min-height: 44px;
+      border: 1px solid var(--rule); border-radius: 12px;
+      background: var(--row); color: var(--ink);
+    }
+    .search-toggle:hover, .close:hover { background: var(--hover); }
+    .search-icon {
+      display: inline-block; position: relative; width: 15px; height: 15px;
+      border: 2px solid currentColor; border-radius: 50%; margin: 0 3px 2px 0;
+    }
+    .search-icon::after {
+      content: ""; position: absolute; width: 8px; height: 2px;
+      background: currentColor; bottom: -4px; right: -6px; transform: rotate(45deg);
+    }
+    .button-list { display: flex; flex-direction: column; gap: 15px; }
+    .link-card {
+      display: flex; align-items: center; justify-content: space-between; position: relative;
+      padding: 15px 20px; border-left: 4px solid transparent; border-radius: 12px;
+      background: var(--row); color: var(--ink); text-decoration: none;
+      box-shadow: inset 0 0 0 1px var(--rule);
+    }
+    .link-card:hover, .link-card:active { background: var(--hover); }
+    .link-card.recent { border-left-color: var(--brand); }
+    .link-content { display: flex; align-items: center; width: 100%; }
+    .link-icon {
+      position: relative; isolation: isolate;
+      width: 30px; font-size: 20px; text-align: center; margin-right: 15px; color: var(--brand);
+    }
+    .link-icon::after {
+      content: ""; position: absolute; width: 32px; height: 32px;
+      top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: -1;
+      border-radius: 9px; background: var(--tint);
+    }
+    .link-text { font-size: 16px; font-weight: 500; flex-grow: 1; }
+    .arrow-icon { position: relative; color: var(--muted); }
+    .link-card.recent .arrow-icon { color: var(--brand); }
+    .link-card.recent .arrow-icon::before { content: "\f1da"; position: absolute; right: 0; }
+    .link-card.recent .arrow-icon::after { content: "\f054"; visibility: hidden; }
+    .visually-hidden {
+      position: absolute; width: 1px; height: 1px; overflow: hidden;
+      clip-path: inset(50%); white-space: nowrap;
+    }
+    dialog {
+      width: min(420px, calc(100% - 32px)); max-height: 85vh; max-height: 85dvh;
+      margin: auto; padding: 20px; border: 1px solid var(--rule); border-radius: 18px;
+      background: var(--paper); color: var(--ink); box-shadow: var(--shadow);
+    }
+    dialog::backdrop { background: rgb(12 24 27 / 55%); }
+    .dialog-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    h2 { font-size: 1.2rem; }
+    .close {
+      width: 44px; height: 44px; border: 0; border-radius: 10px;
+      background: var(--row); color: var(--ink); font-size: 1.5rem;
+    }
+    input {
+      width: 100%; min-height: 46px; padding: 10px 12px; border: 1px solid var(--rule);
+      border-radius: 8px; background: var(--paper); color: var(--ink);
+    }
+    input::placeholder { color: var(--muted); }
+    #count { font-size: .875rem; color: var(--muted); margin: 14px 0 4px; }
+    .result {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      min-height: 46px; padding: 8px 4px; border-bottom: 1px solid var(--rule);
+      color: var(--ink); text-decoration: none;
+    }
+    .result:hover { background: var(--hover); }
+    .recent-label { font-size: .875rem; color: var(--brand); white-space: nowrap; }
+    @media (max-width: 500px) {
+      .container { padding: 25px; }
+      h1 { font-size: 24px; }
+      .link-card { padding: 12px 15px; }
+    }
+    @media (max-width: 310px) {
+      h1 { padding-right: 48px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>社内システム</h1>
+      <button type="button" id="open-search" class="search-toggle" aria-label="システムを検索" aria-haspopup="dialog" aria-controls="search-dialog" title="システムを検索（/）" hidden>
+        <span class="search-icon" aria-hidden="true"></span>
+      </button>
+    </header>
+    <nav class="button-list" aria-label="社内システム一覧">
+      <a id="board" class="link-card" href="https://portal.brexa-tech.jp/" target="_blank" rel="noopener" data-keywords="けいじばん お知らせ 社内通知 ポータル">
+        <span class="link-content">
+          <i class="fa-solid fa-clipboard-list link-icon" aria-hidden="true"></i>
+          <span class="link-text">掲示板</span>
+        </span>
+        <i class="fa-solid fa-chevron-right arrow-icon" aria-hidden="true"></i>
+      </a>
+      <a id="attendance" class="link-card" href="https://osg03-cws.company.works-hi.com/self-workflow/cws/cws" target="_blank" rel="noopener" data-keywords="きんたい 勤務 打刻 出退勤 残業 休暇">
+        <span class="link-content">
+          <i class="fa-solid fa-clock link-icon" aria-hidden="true"></i>
+          <span class="link-text">勤怠管理</span>
+        </span>
+        <i class="fa-solid fa-chevron-right arrow-icon" aria-hidden="true"></i>
+      </a>
+      <a id="expenses" class="link-card" href="https://btec.secure.keihi.com/subdomains/sign_in" target="_blank" rel="noopener" data-keywords="ときうむ トキウム けいひ 経費精算 交通費 領収書">
+        <span class="link-content">
+          <i class="fa-solid fa-file-invoice-dollar link-icon" aria-hidden="true"></i>
+          <span class="link-text">TOKIUM (経費)</span>
+        </span>
+        <i class="fa-solid fa-chevron-right arrow-icon" aria-hidden="true"></i>
+      </a>
+      <a id="pay" class="link-card" href="https://www2.e-kakushin.com/emember/servicetop.do?p=init" target="_blank" rel="noopener" data-keywords="いーかくしん きゅうよ 給料 賞与 明細">
+        <span class="link-content">
+          <i class="fa-solid fa-receipt link-icon" aria-hidden="true"></i>
+          <span class="link-text">e革新 (給与明細)</span>
+        </span>
+        <i class="fa-solid fa-chevron-right arrow-icon" aria-hidden="true"></i>
+      </a>
+      <a id="learning" class="link-card" href="https://www25.learningpark.jp/BREXA-education" target="_blank" rel="noopener" data-keywords="きゃりしっぷ キャリアシップ 研修 教育 学習 eラーニング">
+        <span class="link-content">
+          <i class="fa-solid fa-graduation-cap link-icon" aria-hidden="true"></i>
+          <span class="link-text">CAREESHIP</span>
+        </span>
+        <i class="fa-solid fa-chevron-right arrow-icon" aria-hidden="true"></i>
+      </a>
+      <a id="talent" class="link-card" href="https://tiuy3435.talent-p.net/saml/sso" target="_blank" rel="noopener" data-keywords="タレントパレット 人事 評価 目標">
+        <span class="link-content">
+          <i class="fa-solid fa-users-viewfinder link-icon" aria-hidden="true"></i>
+          <span class="link-text">Talent Palette</span>
+        </span>
+        <i class="fa-solid fa-chevron-right arrow-icon" aria-hidden="true"></i>
+      </a>
+      <a id="union" class="link-card" href="https://www.union.ostechnology.jp/user/login?destination=/" target="_blank" rel="noopener" data-keywords="くみあい ろうどう 労組 労働組合">
+        <span class="link-content">
+          <i class="fa-solid fa-people-group link-icon" aria-hidden="true"></i>
+          <span class="link-text">BREXA Technology労働組合</span>
+        </span>
+        <i class="fa-solid fa-chevron-right arrow-icon" aria-hidden="true"></i>
+      </a>
+    </nav>
+  </main>
+  <dialog id="search-dialog" aria-labelledby="search-heading">
+    <div class="dialog-head">
+      <h2 id="search-heading">システムを検索</h2>
+      <button type="button" id="close-search" class="close" aria-label="検索を閉じる">×</button>
+    </div>
+    <label class="visually-hidden" for="query">システム名または用途</label>
+    <input id="query" type="search" placeholder="システム名・用途（例：給与、研修）" autocomplete="off" autofocus>
+    <p id="count" role="status"></p>
+    <nav id="results" aria-label="検索結果"></nav>
+  </dialog>
+  <script>
+    const cards = [...document.querySelectorAll('.link-card')];
+    const dialog = document.querySelector('#search-dialog');
+    const opener = document.querySelector('#open-search');
+    const query = document.querySelector('#query');
+    const results = document.querySelector('#results');
+    const storageKey = 'system-portal:last-opened:v1';
+    let recent = '';
+    try { recent = localStorage.getItem(storageKey) || ''; } catch {}
+
+    function markRecent() {
+      for (const card of cards) {
+        const current = card.id === recent;
+        const name = card.querySelector('.link-text').textContent;
+        card.classList.toggle('recent', current);
+        card.title = current ? '前回開いたシステム' : '';
+        card.setAttribute('aria-label', name + (current ? '（前回利用）' : '') + '（新しいタブで開く）');
+      }
+    }
+    window.addEventListener('storage', event => {
+      if (event.key !== storageKey && event.key !== null) return;
+      recent = event.newValue || '';
+      markRecent();
+      if (dialog.open) renderResults();
+    });
+    function remember(event) {
+      if (event.type === 'auxclick' && event.button !== 1) return;
+      const link = event.target.closest('a');
+      if (!link) return;
+      recent = link.dataset.source || link.id;
+      try { localStorage.setItem(storageKey, recent); } catch {}
+      markRecent();
+      if (dialog.open) dialog.close();
+    }
+    function normalize(value) {
+      return value.normalize('NFKC').toLowerCase().trim();
+    }
+    function renderResults() {
+      const words = normalize(query.value).split(/\s+/);
+      results.replaceChildren();
+      for (const card of cards) {
+        const name = card.querySelector('.link-text').textContent;
+        const searchable = normalize(name + ' ' + card.dataset.keywords);
+        if (!words.every(word => searchable.includes(word))) continue;
+        const match = document.createElement('a');
+        match.className = 'result';
+        match.href = card.href;
+        match.target = '_blank';
+        match.rel = 'noopener';
+        match.dataset.source = card.id;
+        match.textContent = name;
+        match.setAttribute('aria-label', card.getAttribute('aria-label'));
+        if (card.id === recent) {
+          const label = document.createElement('span');
+          label.className = 'recent-label';
+          label.textContent = '前回利用';
+          match.append(label);
+        }
+        results.append(match);
+      }
+      const total = results.childElementCount;
+      document.querySelector('#count').textContent = total ? total + '件' : '該当するシステムがありません。別の言葉で検索してください。';
+    }
+    function openSearch() {
+      query.value = '';
+      renderResults();
+      dialog.showModal();
+      query.focus();
+    }
+    markRecent();
+    for (const type of ['click', 'auxclick']) {
+      document.querySelector('.button-list').addEventListener(type, remember);
+      results.addEventListener(type, remember);
+    }
+    if (typeof dialog.showModal === 'function') {
+      opener.hidden = false;
+      opener.addEventListener('click', openSearch);
+      document.querySelector('#close-search').addEventListener('click', () => dialog.close());
+      query.addEventListener('input', renderResults);
+      query.addEventListener('keydown', event => {
+        if (event.key === 'Enter' && !event.isComposing && event.keyCode !== 229 && results.childElementCount === 1) {
+          event.preventDefault();
+          results.firstElementChild.click();
+        }
+      });
+      document.addEventListener('keydown', event => {
+        if (event.key === '/' && !event.repeat && !event.isComposing && !event.ctrlKey && !event.metaKey && !event.altKey && !dialog.open) {
+          event.preventDefault();
+          openSearch();
+        }
+      });
+    }
+  </script>
+</body>
+</html>
